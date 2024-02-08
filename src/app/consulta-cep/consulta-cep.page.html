@@ -1,0 +1,80 @@
+<ion-header>
+  <ion-toolbar color="tertiary"> 
+    <ion-title>Consulta de CEP</ion-title>
+  </ion-toolbar>
+</ion-header>
+<br/>
+<ion-content>
+  
+  <br/>
+  <ion-label class="text"> Digite o CEP: </ion-label>
+  <br/>
+
+  <ion-item>
+    <ion-label position="floating">CEP</ion-label>
+    <ion-input [(ngModel)]="enderecoInput" type="text"></ion-input>
+  </ion-item>
+
+  <ion-button expand="full" color="tertiary" (click)="consultarCEP()">Consultar CEP</ion-button>
+
+  <ion-card *ngIf="cep">
+    <ion-card-header>
+      O CEP pesquisado é existente! 
+      <br>
+      Resultados:
+    </ion-card-header>
+    <ion-card-content>
+      <p>Logradouro: {{ cep.logradouro }}</p>
+      <p>Bairro: {{ cep.bairro }}</p>
+      <p>Cidade: {{ cep.localidade }}</p>
+      <p>Estado: {{ cep.uf }}</p>
+      <p>IBGE: {{ cep.ibge }}</p>
+      <p>DDD: {{ cep.ddd }}</p>
+      <p>SIAFI: {{ cep.siafi }}</p>
+    </ion-card-content>
+  </ion-card>
+  
+  <br/>
+  <ion-label class="text"> Caso não tenha o CEP à disposição, insira os detalhes seguintes: </ion-label>
+  <br/>
+
+  <ion-item>
+    <ion-label position="floating">Unidade Federativa (UF)</ion-label>
+    <ion-input [(ngModel)]="uf" type="text"></ion-input>
+  </ion-item>
+  <br/>
+
+  <ion-item>
+    <ion-label position="floating">Município</ion-label>
+    <ion-input [(ngModel)]="localidade" type="text"></ion-input>
+  </ion-item>
+  <br/>
+
+  <ion-item>
+    <ion-label position="floating">Logradouro</ion-label>
+    <ion-input [(ngModel)]="logradouro" type="text"></ion-input>
+  </ion-item>
+  <br/>
+
+  <ion-button expand="full" color="tertiary" (click)="consultarEndereco()">Consultar Endereço</ion-button>
+
+  <ion-card *ngIf="endereco">
+    <ion-card-header>
+      O endereço pesquisado é existente!
+      <br>
+      Resultados:
+    </ion-card-header>
+
+    <ion-card-content *ngFor="let a of endereco; index as i">
+      <p>CEP: {{ a.cep }}</p>
+      <p>Logradouro: {{ a.logradouro }}</p>
+      <p>Bairro: {{ a.bairro }}</p>
+      <p>Cidade: {{ a.localidade }}</p>
+      <p>Estado: {{ a.uf }}</p>
+      <p>IBGE: {{ a.ibge }}</p>
+      <p>DDD: {{ a.ddd }}</p>
+      <p>SIAFI: {{ a.siafi }}</p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
